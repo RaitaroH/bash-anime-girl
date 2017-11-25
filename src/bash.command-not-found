@@ -1,9 +1,9 @@
 print_message () {
-    local messages
-    local selection
+	local messages
+	local selection
 
-    messages=(
-    "Oh..."
+	messages=(
+	"Oh..."
 	"Are you ok?"
 	"It's okay."
 	"Don't worry! <3"
@@ -62,27 +62,27 @@ print_message () {
 	"Keep trying my love."
 	"Don't worry, sometimes more work is needed."
 	"Now... you do have to agree that was pretty stupid :)"
-    )
+	)
 
-    # If CMD_NOT_FOUND_MSGS array is populated use those messages instead of the defaults
-    [[ -n ${CMD_NOT_FOUND_MSGS} ]] && messages=( "${CMD_NOT_FOUND_MSGS[@]}" )
+	# If CMD_NOT_FOUND_MSGS array is populated use those messages instead of the defaults
+	[[ -n ${CMD_NOT_FOUND_MSGS} ]] && messages=( "${CMD_NOT_FOUND_MSGS[@]}" )
 
-    # If CMD_NOT_FOUND_MSGS_APPEND array is populated append those to the existing messages
-    [[ -n ${CMD_NOT_FOUND_MSGS_APPEND} ]] && messages+=( "${CMD_NOT_FOUND_MSGS_APPEND[@]}" )
+	# If CMD_NOT_FOUND_MSGS_APPEND array is populated append those to the existing messages
+	[[ -n ${CMD_NOT_FOUND_MSGS_APPEND} ]] && messages+=( "${CMD_NOT_FOUND_MSGS_APPEND[@]}" )
 
-    # Only print the message some of the time. RANDOM must be seeded to ensure it returns
-    # different values on each iteration.
-    RANDOM=$(date +"%N")
-    selection=$((${RANDOM}%2))
-    if [[ ${selection} -lt 1 ]]; then
-        printf "\n  $(tput bold)$(tput setaf 1)$(shuf -n 1 -e "${messages[@]}")$(tput sgr0)\n\n"
-    fi
+	# Only print the message some of the time. RANDOM must be seeded to ensure it returns
+	# different values on each iteration.
+	RANDOM=$(date +"%N")
+	selection=$((${RANDOM}%2))
+	if [[ ${selection} -lt 1 ]]; then
+		printf "\n  $(tput bold)$(tput setaf 1)$(shuf -n 1 -e "${messages[@]}")$(tput sgr0)\n\n"
+	fi
 }
 
 function_exists () {
-    # Zsh returns 0 even on non existing functions with -F so use -f
-    declare -f $1 > /dev/null
-    return $?
+	# Zsh returns 0 even on non existing functions with -F so use -f
+	declare -f $1 > /dev/null
+	return $?
 }
 
 #
@@ -101,19 +101,19 @@ function_exists () {
 # Zsh
 #
 if function_exists command_not_found_handler; then
-    if ! function_exists orig_command_not_found_handler; then
-        eval "orig_$(declare -f command_not_found_handler)"
-    fi
+	if ! function_exists orig_command_not_found_handler; then
+		eval "orig_$(declare -f command_not_found_handler)"
+	fi
 else
-    orig_command_not_found_handler () {
-        echo "zsh: command not found: $1"
-        return 127
-    }
+	orig_command_not_found_handler () {
+		echo "zsh: command not found: $1"
+		return 127
+	}
 fi
 
 command_not_found_handler () {
-    print_message
-    orig_command_not_found_handler "$@"
+	print_message
+	orig_command_not_found_handler "$@"
 }
 
 
@@ -121,17 +121,17 @@ command_not_found_handler () {
 # Bash
 #
 if function_exists command_not_found_handle; then
-    if ! function_exists orig_command_not_found_handle; then
-        eval "orig_$(declare -f command_not_found_handle)"
-    fi
+	if ! function_exists orig_command_not_found_handle; then
+		eval "orig_$(declare -f command_not_found_handle)"
+	fi
 else
-    orig_command_not_found_handle () {
-        echo "$0: $1: command not found"
-        return 127
-    }
+	orig_command_not_found_handle () {
+		echo "$0: $1: command not found"
+		return 127
+	}
 fi
 
 command_not_found_handle () {
-    print_message
-    orig_command_not_found_handle "$@"
+	print_message
+	orig_command_not_found_handle "$@"
 }
