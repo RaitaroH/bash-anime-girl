@@ -62,6 +62,10 @@ print_message () {
 	"Keep trying my love."
 	"Don't worry, sometimes more work is needed."
 	"Now... you do have to agree that was pretty stupid :)"
+	"Now now... calm down."
+	"Hmmmm..."
+	"What was that supposed to be?"
+	"If you continue like this... I'll have to punish you ;)"
 	)
 
 	# If CMD_NOT_FOUND_MSGS array is populated use those messages instead of the defaults
