@@ -1,5 +1,5 @@
 # bash-anime-girl
-Randomly says nice things to the user when typing wrong command.
+Randomly says somewhat nice things to the user when typing wrong command. It includes actual japanese.
 
 Based on the [bash-insulter](https://github.com/hkbakke/bash-insulter) by @hkbakke.
 
