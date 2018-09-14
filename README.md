@@ -10,11 +10,11 @@ Based on the [bash-insulter](https://github.com/hkbakke/bash-insulter) by @hkbak
 # Installation
 
     # Method 1 - know what you are doing
-    git clone https://github.com/RaitaroH/bash-anime-girl.git bash-insulter
+    git clone https://gitlab.com/RaitaroH/bash-anime-girl.git bash-insulter
     sudo cp bash-anime-girl/src/bash.command-not-found /etc/
 
     # Method 2
-    sudo wget -O /etc/bash.command-not-found https://raw.githubusercontent.com/RaitaroH/bash-anime-girl/master/src/bash.command-not-found
+    sudo wget -O /etc/bash.command-not-found https://gitlab.com/RaitaroH/bash-anime-girl/master/src/bash.command-not-found
 
 Then source the file automatically for new logins by adding the following to `/etc/bash.bashrc` or any of the other locations where you can configure your shell automatically during login (zsh have different config files):
 ```
